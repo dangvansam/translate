@@ -225,6 +225,7 @@ export class HandsService {
   }
 
   draw(swState: SignWritingStateModel, ctx: CanvasRenderingContext2D): void {
+    console.log('draw hand', swState);
     if (swState.leftHand) {
       this.drawHand(swState.body.shoulders.width, swState.leftHand, true, ctx);
     }

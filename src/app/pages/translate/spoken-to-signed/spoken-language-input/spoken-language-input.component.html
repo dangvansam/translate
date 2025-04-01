@@ -23,15 +23,12 @@
 }
 @if (isMobile) {
   <ion-toolbar appKeyboardFlying>
-    <ion-buttons slot="start">
-      <ion-button disabled>
-        <ion-icon slot="icon-only" name="add-outline" color="primary" />
-      </ion-button>
-    </ion-buttons>
+    <!-- Show ion-textarea when Text mode is active -->
     <ion-textarea
+      *ngIf="mode === 'text'"
       id="mobile"
       autoGrow
-      rows="1"
+      rows="10"
       [placeholder]="'translate.spoken-to-signed.placeholder' | transloco"
       [attr.aria-label]="'translate.spoken-to-signed.text' | transloco"
       [formControl]="text"
@@ -41,10 +38,27 @@
       dir="auto"
       aria-labelledby="spoken-language-label"
       autofocus
-      [attr.data-gramm_editor]="false" />
-
-    <ion-buttons slot="end">
-      <app-speech-to-text [lang]="spokenLanguage" (changeText)="text.setValue($event)" matTooltipPosition="before" />
+      [attr.data-gramm_editor]="false"
+    ></ion-textarea>
+  
+    <!-- Show ion-buttons with speech-to-text when Voice mode is active -->
+    <ion-buttons *ngIf="mode === 'voice'" class="micro-button-container">
+      <app-speech-to-text 
+        [lang]="spokenLanguage" 
+        (changeText)="text.setValue($event);">
+      </app-speech-to-text>
     </ion-buttons>
+    
+    <!-- Mode Toggle Buttons -->
+    <ion-segment [value]="mode" (ionChange)="toggleMode($event)">
+      <ion-segment-button value="text">
+        <ion-label>Text</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="voice">
+        <ion-label>Speech</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  
   </ion-toolbar>
+  
 }

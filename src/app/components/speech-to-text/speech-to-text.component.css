@@ -1,0 +1,49 @@
+
+.micro-button-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    width: 100%; /* Take full width */
+  }
+
+.micro-button {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: 8px; /* Adjust spacing between icon and text */
+text-wrap: nowrap;
+font-size: 14px;
+font-weight: 500;
+transition: all 0.2s ease-in-out;
+outline: none;
+height: 40px;
+background-color: #2563eb; /* Blue */
+color: white;
+padding: 0 24px;
+border-radius: 9999px; /* Fully rounded */
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+margin: 80px;
+
+/* 🔥 Glassmorphism Effect */
+background: rgba(255, 255, 255, 0.15);
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(10px);
+border: 1px solid rgba(255, 255, 255, 0.25);
+color: white;
+
+&:hover {
+    background-color: #1e40af; /* Darker blue on hover */
+}
+
+&:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+}

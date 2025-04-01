@@ -123,6 +123,7 @@ export class PlayableVideoEncoder {
   }
 
   createVideoEncoder() {
+    console.log('Creating video encoder');
     this.videoEncoder = new VideoEncoder({
       output: (chunk, meta) => this.muxer.addVideoChunk(chunk, meta),
       error: e => console.error(e),

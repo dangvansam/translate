@@ -63,6 +63,7 @@ export class SignWritingTranslationService {
     from: string,
     to: string
   ): Promise<TranslationResponse> {
+    console.log('Translating offline', {direction, text, from, to});
     await this.loadOfflineModel(direction, from, to);
 
     let translations = await this.worker.translate(from, to, [text], [{isHtml: false}]);
@@ -71,7 +72,7 @@ export class SignWritingTranslationService {
     }
 
     translations = translations.map(({text}) => ({text: this.postProcessSignWriting(text)}));
-
+    console.log('translations', translations);
     return translations[0];
   }
 
@@ -85,7 +86,7 @@ export class SignWritingTranslationService {
     // TODO use the new API (when bergamot model is trained)
     // const query = new URLSearchParams({from, to, text});
     // return this.http.get<TranslationResponse>(`https://sign.mt/api/${direction}?${query}`);'
-
+    console.log('Translating online', {direction, text, from, to});
     const url = 'https://sign.mt/api/spoken-text-to-signwriting';
     const body = {
       data: {

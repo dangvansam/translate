@@ -118,6 +118,7 @@ export class FaceService {
   }
 
   draw(swState: SignWritingStateModel, ctx: CanvasRenderingContext2D): void {
+    console.log('draw face', swState);
     if (!swState.face) {
       return;
     }

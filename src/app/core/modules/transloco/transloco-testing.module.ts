@@ -10,7 +10,7 @@ export const AppTranslocoTestingModule = TranslocoTestingModule.forRoot({
   langs,
   translocoConfig: {
     availableLangs,
-    defaultLang: 'en',
+    defaultLang: 'vi',
     reRenderOnLangChange: true,
   },
   preloadLangs: true,

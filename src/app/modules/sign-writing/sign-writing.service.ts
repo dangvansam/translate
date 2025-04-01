@@ -77,6 +77,7 @@ export class SignWritingService {
   }
 
   draw(swState: SignWritingStateModel, ctx: CanvasRenderingContext2D): void {
+    console.log('draw sign writing', swState);
     this.bodyService.draw(swState.body, ctx);
     this.faceService.draw(swState, ctx);
     this.handsService.draw(swState, ctx);

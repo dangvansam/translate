@@ -51,9 +51,11 @@ export class LanguageSelectorComponent extends BaseComponent implements OnInit, 
 
   ngOnInit(): void {
     if (!this.language) {
-      this.selectLanguage(this.languages[0]);
+      this.selectLanguage("vi");
     }
 
+    // this.languages = this.languages.filter(lang => ['en', 'vi'].includes(lang));
+    
     // Initialize langNames, relevant for SSR
     this.setLangNames(this.transloco.getActiveLang());
     this.transloco.langChanges$

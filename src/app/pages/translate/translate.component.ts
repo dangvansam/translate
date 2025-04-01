@@ -9,13 +9,13 @@ import {TranslationService} from '../../modules/translate/translate.service';
 import {Meta, Title} from '@angular/platform-browser';
 import {MediaMatcher} from '@angular/cdk/layout';
 import {TranslateMobileComponent} from './translate-mobile/translate-mobile.component';
-import {TranslateDesktopComponent} from './translate-desktop/translate-desktop.component';
+// import {TranslateDesktopComponent} from './translate-desktop/translate-desktop.component';
 
 @Component({
   selector: 'app-translate',
   templateUrl: './translate.component.html',
   styleUrls: ['./translate.component.scss'],
-  imports: [TranslateMobileComponent, TranslateDesktopComponent],
+  imports: [TranslateMobileComponent],
 })
 export class TranslateComponent extends BaseComponent implements OnInit {
   private store = inject(Store);
@@ -34,7 +34,7 @@ export class TranslateComponent extends BaseComponent implements OnInit {
 
     this.spokenToSigned$ = this.store.select<boolean>(state => state.translate.spokenToSigned);
     this.isMobile = this.mediaMatcher.matchMedia('screen and (max-width: 599px)');
-
+    
     // Default settings
     this.store.dispatch([
       new SetSetting('receiveVideo', true),

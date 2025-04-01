@@ -3,14 +3,14 @@ import {TranslocoService} from '@jsverse/transloco';
 import {filter, tap} from 'rxjs/operators';
 import {firstValueFrom} from 'rxjs';
 import {NavigationEnd, Router} from '@angular/router';
-import {GoogleAnalyticsService} from './core/modules/google-analytics/google-analytics.service';
+// import {GoogleAnalyticsService} from './core/modules/google-analytics/google-analytics.service';
 import {Capacitor} from '@capacitor/core';
 import {languageCodeNormalizer} from './core/modules/transloco/languages';
 import {Meta} from '@angular/platform-browser';
 import {IonApp, IonRouterOutlet} from '@ionic/angular/standalone';
 import {getUrlParams} from './core/helpers/url';
-import * as CookieConsent from 'vanilla-cookieconsent';
-import {ConsentStatus, ConsentType, FirebaseAnalytics} from '@capacitor-firebase/analytics';
+// import * as CookieConsent from 'vanilla-cookieconsent';
+// import {ConsentStatus, ConsentType, FirebaseAnalytics} from '@capacitor-firebase/analytics';
 import {MediaMatcher} from '@angular/cdk/layout';
 
 @Component({
@@ -21,7 +21,7 @@ import {MediaMatcher} from '@angular/cdk/layout';
 })
 export class AppComponent implements AfterViewInit {
   private meta = inject(Meta);
-  private ga = inject(GoogleAnalyticsService);
+  // private ga = inject(GoogleAnalyticsService);
   private transloco = inject(TranslocoService);
   private router = inject(Router);
   private mediaMatcher = inject(MediaMatcher);
@@ -50,7 +50,7 @@ export class AppComponent implements AfterViewInit {
       await SplashScreen.hide();
     }
 
-    this.initCookieConsent();
+    // this.initCookieConsent();
   }
 
   updateToolbarColor() {
@@ -68,6 +68,7 @@ export class AppComponent implements AfterViewInit {
       }
 
       const toolbarColor = window.getComputedStyle(toolbar).getPropertyValue('--background');
+      console.log('toolbarColor', toolbarColor);
       if (!toolbarColor) {
         // Try again if the color is not yet available
         return requestAnimationFrame(onColorSchemeChange);
@@ -84,87 +85,87 @@ export class AppComponent implements AfterViewInit {
     onColorSchemeChange();
   }
 
-  initCookieConsent() {
-    return CookieConsent.run({
-      root: 'body',
-      autoShow: true,
-      hideFromBots: true,
+  // initCookieConsent() {
+  //   return CookieConsent.run({
+  //     root: 'body',
+  //     autoShow: true,
+  //     hideFromBots: true,
 
-      cookie: {
-        name: 'cc_cookie',
-        domain: location.hostname,
-        path: '/',
-        sameSite: 'Lax',
-        expiresAfterDays: 182,
-      },
+  //     cookie: {
+  //       name: 'cc_cookie',
+  //       domain: window.location?.origin,
+  //       path: '/',
+  //       sameSite: 'Lax',
+  //       expiresAfterDays: 182,
+  //     },
 
-      // https://cookieconsent.orestbida.com/reference/configuration-reference.html#guioptions
-      guiOptions: {
-        consentModal: {
-          layout: 'cloud inline',
-          position: 'bottom center',
-          equalWeightButtons: true,
-          flipButtons: false,
-        },
-        preferencesModal: {
-          layout: 'box',
-          equalWeightButtons: true,
-          flipButtons: false,
-        },
-      },
-      onConsent: ({cookie}) => {
-        console.log('Consent given:', cookie);
-        const categories: {[key: string]: ConsentType[]} = {
-          functionality: [ConsentType.FunctionalityStorage, ConsentType.PersonalizationStorage],
-          analytics: [ConsentType.AnalyticsStorage],
-          marketing: [ConsentType.AdStorage, ConsentType.AdPersonalization, ConsentType.AdUserData],
-        };
-        for (const [category, types] of Object.entries(categories)) {
-          const consent: ConsentStatus = cookie.categories.includes(category)
-            ? ConsentStatus.Granted
-            : ConsentStatus.Denied;
-          for (const type of types) {
-            FirebaseAnalytics.setConsent({type, status: consent});
-          }
-        }
-      },
-      categories: {
-        necessary: {
-          enabled: true, // this category is enabled by default
-          readOnly: true, // this category cannot be disabled
-        },
-        functionality: {
-          enabled: true,
-        },
-        analytics: {
-          autoClear: {
-            cookies: [
-              {
-                name: /^_ga/, // regex: match all cookies starting with '_ga'
-              },
-              {
-                name: '_gid', // string: exact cookie name
-              },
-            ],
-          },
-          // https://cookieconsent.orestbida.com/reference/configuration-reference.html#category-services
-          services: {
-            ga: {
-              label: 'Google Analytics',
-            },
-          },
-        },
-        marketing: {},
-      },
+  //     // https://cookieconsent.orestbida.com/reference/configuration-reference.html#guioptions
+  //     guiOptions: {
+  //       consentModal: {
+  //         layout: 'cloud inline',
+  //         position: 'bottom center',
+  //         equalWeightButtons: true,
+  //         flipButtons: false,
+  //       },
+  //       preferencesModal: {
+  //         layout: 'box',
+  //         equalWeightButtons: true,
+  //         flipButtons: false,
+  //       },
+  //     },
+  //     onConsent: ({cookie}) => {
+  //       console.log('Consent given:', cookie);
+  //       const categories: {[key: string]: ConsentType[]} = {
+  //         functionality: [ConsentType.FunctionalityStorage, ConsentType.PersonalizationStorage],
+  //         analytics: [ConsentType.AnalyticsStorage],
+  //         marketing: [ConsentType.AdStorage, ConsentType.AdPersonalization, ConsentType.AdUserData],
+  //       };
+  //       for (const [category, types] of Object.entries(categories)) {
+  //         const consent: ConsentStatus = cookie.categories.includes(category)
+  //           ? ConsentStatus.Granted
+  //           : ConsentStatus.Denied;
+  //         for (const type of types) {
+  //           FirebaseAnalytics.setConsent({type, status: consent});
+  //         }
+  //       }
+  //     },
+  //     categories: {
+  //       necessary: {
+  //         enabled: true, // this category is enabled by default
+  //         readOnly: true, // this category cannot be disabled
+  //       },
+  //       functionality: {
+  //         enabled: true,
+  //       },
+  //       analytics: {
+  //         autoClear: {
+  //           cookies: [
+  //             {
+  //               name: /^_ga/, // regex: match all cookies starting with '_ga'
+  //             },
+  //             {
+  //               name: '_gid', // string: exact cookie name
+  //             },
+  //           ],
+  //         },
+  //         // https://cookieconsent.orestbida.com/reference/configuration-reference.html#category-services
+  //         services: {
+  //           ga: {
+  //             label: 'Google Analytics',
+  //           },
+  //         },
+  //       },
+  //       marketing: {},
+  //     },
 
-      language: {
-        default: 'en',
-        translations: {
-          en: 'assets/i18n/cookies/en.json',
-        },
-      },
-    });
-  }
+  //     language: {
+  //       default: 'vi',
+  //       translations: {
+  //         en: 'assets/i18n/vi.json',
+  //       },
+  //     },
+  //   });
+  // }
 
   logRouterNavigation() {
     const isLanguageLoaded = firstValueFrom(
@@ -176,41 +177,41 @@ export class AppComponent implements AfterViewInit {
         filter(event => event instanceof NavigationEnd),
         tap(async (event: NavigationEnd) => {
           await isLanguageLoaded; // Before triggering page view, wait for language to be loaded
-          await this.ga.setCurrentScreen(event.urlAfterRedirects);
+          // await this.ga.setCurrentScreen(event.urlAfterRedirects);
         })
       )
       .subscribe();
   }
 
   listenLanguageChange() {
-    const urlParam = this.urlParams.get('lang');
-
+    const urlParam = this.urlParams.get('lang'); // Get lang from URL if available
+  
     if (!('navigator' in globalThis) || !('document' in globalThis)) {
-      if (urlParam) {
-        this.transloco.setActiveLang(urlParam);
-      }
+      // If running in an SSR environment (without window/document), use the URL param
+      this.transloco.setActiveLang(urlParam || 'vi'); // Default to 'vi'
       return;
     }
-
+  
     this.transloco.langChanges$
       .pipe(
         tap(lang => {
           document.documentElement.lang = lang;
           document.dir = ['he', 'ar', 'fa', 'ku', 'ps', 'sd', 'ug', 'ur', 'yi'].includes(lang) ? 'rtl' : 'ltr';
-
-          // Set pre-rendered cloud function path with lang attribute
+  
+          // Update OpenSearch meta tag
           const openSearch = Array.from(document.head.children).find(t => t.getAttribute('rel') === 'search');
           if (openSearch) {
-            // not available in the test environment sometimes
             openSearch.setAttribute('href', `/opensearch.xml?lang=${lang}`);
           }
         })
       )
       .subscribe();
-
-    this.transloco.setActiveLang(urlParam || languageCodeNormalizer(navigator.language));
+  
+    // Set language based on URL param or default to 'vi'
+    const browserLang = languageCodeNormalizer(navigator.language); // Normalize browser lang
+    this.transloco.setActiveLang(urlParam || browserLang || 'vi'); 
   }
-
+  
   checkURLEmbedding(): void {
     const urlParam = this.urlParams.get('embed');
     if (urlParam !== null) {

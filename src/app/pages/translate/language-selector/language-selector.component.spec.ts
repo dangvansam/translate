@@ -33,7 +33,8 @@ describe('LanguageSelectorComponent', () => {
     fixture = TestBed.createComponent(LanguageSelectorComponent);
     component = fixture.componentInstance;
     component.translationKey = 'languages';
-    component.languages = ['en', 'fr', 'de'];
+    // component.languages = ['en', 'fr', 'de'];
+    component.languages = ['vi', 'en'];
     fixture.detectChanges();
   });
 

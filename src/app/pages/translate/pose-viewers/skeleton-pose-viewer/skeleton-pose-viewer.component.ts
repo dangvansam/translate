@@ -15,7 +15,7 @@ export class SkeletonPoseViewerComponent extends BasePoseViewerComponent impleme
 
   ngAfterViewInit(): void {
     const pose = this.poseEl().nativeElement;
-
+    console.log('pose', pose);
     fromEvent(pose, 'firstRender$')
       .pipe(
         tap(async () => {

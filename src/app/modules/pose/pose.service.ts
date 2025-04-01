@@ -26,6 +26,7 @@ export class PoseService {
   }
 
   async load(): Promise<void> {
+    console.log('Loading mediapipe holistic');
     if (!PoseService.loadPromise) {
       PoseService.loadPromise = this._load();
     }

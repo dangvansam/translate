@@ -96,6 +96,7 @@ export class SignedLanguageOutputComponent extends BaseComponent implements OnIn
   }
 
   async createVideoMediaSource() {
+    console.log('createVideoMediaSource', this.videoUrl);
     const res = await fetch(this.videoUrl);
     const blob = await res.blob();
 

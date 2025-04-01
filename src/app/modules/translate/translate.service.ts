@@ -11,52 +11,53 @@ export class TranslationService {
 
   signedLanguages = [
     'ase',
-    'gsg',
-    'fsl',
-    'bfi',
-    'ils',
-    'sgg',
-    'ssr',
-    'slf',
-    'isr',
-    'ssp',
-    'jos',
-    'rsl-by',
-    'bqn',
-    'csl',
-    'csq',
-    'cse',
-    'dsl',
-    'ins',
-    'nzs',
-    'eso',
-    'fse',
-    'asq',
-    'gss-cy',
-    'gss',
-    'icl',
-    'ise',
-    'jsl',
-    'lsl',
-    'lls',
-    'psc',
-    'pso',
-    'bzs',
-    'psr',
-    'rms',
-    'rsl',
-    'svk',
-    'aed',
-    'csg',
-    'csf',
-    'mfs',
-    'swl',
-    'tsm',
-    'ukl',
-    'pks',
+    // 'gsg',
+    // 'fsl',
+    // 'bfi',
+    // 'ils',
+    // 'sgg',
+    // 'ssr',
+    // 'slf',
+    // 'isr',
+    // 'ssp',
+    // 'jos',
+    // 'rsl-by',
+    // 'bqn',
+    // 'csl',
+    // 'csq',
+    // 'cse',
+    // 'dsl',
+    // 'ins',
+    // 'nzs',
+    // 'eso',
+    // 'fse',
+    // 'asq',
+    // 'gss-cy',
+    // 'gss',
+    // 'icl',
+    // 'ise',
+    // 'jsl',
+    // 'lsl',
+    // 'lls',
+    // 'psc',
+    // 'pso',
+    // 'bzs',
+    // 'psr',
+    // 'rms',
+    // 'rsl',
+    // 'svk',
+    // 'aed',
+    // 'csg',
+    // 'csf',
+    // 'mfs',
+    // 'swl',
+    // 'tsm',
+    // 'ukl',
+    // 'pks',
   ];
 
   spokenLanguages = [
+    'vi',
     'en',
     'de',
     'fr',
@@ -159,7 +160,6 @@ export class TranslationService {
     'ur',
     'ug',
     'uz',
-    'vi',
     'cy',
     'xh',
     'yi',
@@ -188,8 +188,8 @@ export class TranslationService {
 
   normalizeSpokenLanguageText(language: string, text: string): Observable<string> {
     const params = new URLSearchParams();
-    params.set('lang', language);
-    params.set('text', text);
+    params.set('normalizeSpokenLanguageText lang:', language);
+    params.set('normalizeSpokenLanguageText text:', text);
     const url = 'https://sign.mt/api/text-normalization?' + params.toString();
 
     return this.http.get<{text: string}>(url).pipe(map(response => response.text));
@@ -204,6 +204,8 @@ export class TranslationService {
   }
 
   translateSpokenToSigned(text: string, spokenLanguage: string, signedLanguage: string): string {
+    console.log("translateSpokenToSigned", text, spokenLanguage, signedLanguage);
+    spokenLanguage = "en";
     const api = 'https://us-central1-sign-mt.cloudfunctions.net/spoken_text_to_signed_pose';
     return `${api}?text=${encodeURIComponent(text)}&spoken=${spokenLanguage}&signed=${signedLanguage}`;
   }

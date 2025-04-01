@@ -1,28 +1,26 @@
 <ng-container *transloco="let t; read: 'speech-to-text'">
   <!-- As a single button it is uglier code, but nice ripple animation -->
   @if (!supportError) {
-    <ion-button
-      class="circle-icon"
-      fill="clear"
-      shape="round"
-      color="dark"
-      (click)="isRecording ? stop() : start()"
-      [attr.aria-label]="t(isRecording ? 'stop' : 'start')"
-      [matTooltip]="t(isRecording ? 'stop' : 'start')"
-      [matTooltipPosition]="matTooltipPosition">
-      <ion-icon [name]="isRecording ? 'stop-circle-outline' : 'mic-outline'" slot="icon-only" color="primary" />
-    </ion-button>
-  } @else {
+    <button 
+    class="micro-button" 
+    [class.recording]="isRecording" 
+    (click)="isRecording ? stop() : start()"
+    [attr.aria-label]="t(isRecording ? 'stop' : 'start')"
+    [matTooltip]="t(isRecording ? 'stop' : 'start')"
+    [matTooltipPosition]="matTooltipPosition"
+    [style.background]="isRecording ?'#2563eb': 'white' "
+    [style.color]="isRecording ? 'white': 'black'"
+    >
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mic h-4 w-4 mr-2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" x2="12" y1="19" y2="22"></line></svg>
+    {{ isRecording ? 'Stop' : 'Start' }}
+  </button>
+  
+
+    } @else {
     <!-- If language is not supported -->
-    <ion-button
-      class="circle-icon"
-      fill="clear"
-      shape="round"
-      color="medium"
-      [attr.aria-label]="t(supportError)"
-      [matTooltip]="t(supportError)"
-      [matTooltipPosition]="matTooltipPosition">
+    <ion-button class="circle-icon" fill="clear" shape="round" color="medium" [attr.aria-label]="t(supportError)"
+      [matTooltip]="t(supportError)" [matTooltipPosition]="matTooltipPosition">
       <ion-icon name="mic-off-outline" slot="icon-only" />
     </ion-button>
-  }
+    }
 </ng-container>

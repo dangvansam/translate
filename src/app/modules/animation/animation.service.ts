@@ -90,6 +90,9 @@ export class AnimationService {
   }
 
   estimate(poses: EstimatedPose[]): {[key: string]: [number, number, number, number][]} {
+    console.log('Estimating animation');
+    console.log('poses', poses);
+
     if (!this.sequentialModel) {
       return null;
     }
@@ -105,6 +108,7 @@ export class AnimationService {
 
     const tracks = {};
     ANIMATION_KEYS.forEach((k, i) => (tracks[k] = quaternions[i]));
+    console.log('tracks', tracks);
     return tracks;
   }
 }

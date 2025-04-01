@@ -15,10 +15,12 @@ export class I18NLanguageSelectorComponent {
   private transloco = inject(TranslocoService);
 
   current = this.transloco.getActiveLang();
-
   languages = this.groupLanguages();
 
   private groupLanguages() {
+    console.log("languages:", this.languages);
+    console.log("current:", this.current);
+
     const languageGroups = [];
     let lastGroup = {label: 'A', languages: []};
     let didCrossZ = false;

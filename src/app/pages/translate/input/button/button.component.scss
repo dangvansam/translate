@@ -4,7 +4,7 @@ ion-button {
 
   &.selected {
     border-radius: var(--border-radius);
-    background-color: rgba(166, 66, 244, 0.08);
+    background-color: rgba(255, 255, 255, 0.08);
   }
 
   --ion-color-base: var(--ion-color-primary-accessible-text) !important;

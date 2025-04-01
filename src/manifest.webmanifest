@@ -6,7 +6,7 @@
   "start_url": "/",
   "display": "standalone",
   "theme_color": "#3F51B5",
-  "background_color": "#FFF",
+  "background_color": "#000000",
   "user_preferences": {
     "color_scheme_dark": {
       "theme_color": "#3F51B5",
@@ -14,7 +14,7 @@
     },
     "color_scheme_light": {
       "theme_color": "#3F51B5",
-      "background_color": "#FFF"
+      "background_color": "#000000"
     }
   },
   "icons": [

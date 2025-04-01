@@ -3,18 +3,18 @@
     "title": "Không tìm thấy trang",
     "doesNotExist": "Xin lỗi, trang bạn đang tìm kiếm không tồn tại.",
     "errorLogged": "Chúng tôi đã ghi lỗi và sẽ xem xét nó.",
-    "goHome": "Đi về nhà"
+    "goHome": "Đi về trang chủ"
   },
   "keyboard": {
     "ctrl": "Ctrl",
     "shift": "Shift"
   },
   "translate": {
-    "title": "Dịch Ngôn Ngữ Ký Hiệu",
+    "title": "Easy Comm",
     "language-selector": {
       "detected": "{{lang}} - Đã phát hiện",
-      "detect": "Phát hiện ngôn ngữ",
-      "more": "Nhiều ngôn ngữ hơn"
+      "detect": "Tự động",
+      "more": "Nhiều hơn"
     },
     "input": {
       "text": "Văn bản",
@@ -49,7 +49,7 @@
     },
     "signed-to-spoken": {
       "actions": {
-        "copy": "Sao chép bản dịch"
+        "copy": "Sao chép"
       }
     },
     "logo": "Dịch"

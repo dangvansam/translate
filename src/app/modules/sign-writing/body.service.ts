@@ -65,6 +65,7 @@ export class BodyService {
   }
 
   draw(body: BodyStateModel, ctx: CanvasRenderingContext2D): void {
+    console.log('draw body', body);
     if (body) {
       this.drawShoulders(body.shoulders, ctx);
       this.drawArms(body, ctx);

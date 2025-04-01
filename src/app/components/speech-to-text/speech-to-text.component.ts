@@ -39,7 +39,7 @@ export class SpeechToTextComponent extends BaseComponent implements OnInit, OnCh
     this.speechRecognition = new this.SpeechRecognition();
     this.speechRecognition.interimResults = true;
     this.speechRecognition.continuous = false;
-    this.speechRecognition.lang = this.lang;
+    this.speechRecognition.lang = 'vi-VN'; // this.lang;
 
     fromEvent(this.speechRecognition, 'result').subscribe((event: SpeechRecognitionEvent) => {
       const transcription = event.results[0][0].transcript;

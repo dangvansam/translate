@@ -53,6 +53,7 @@ export abstract class BasePoseViewerComponent extends BaseComponent implements O
   }
 
   async definePoseViewerElement() {
+    console.log('Defining pose viewer element');
     // Load the `pose-viewer` custom element
     if (!BasePoseViewerComponent.isCustomElementDefined) {
       BasePoseViewerComponent.isCustomElementDefined = true;
@@ -84,6 +85,7 @@ export abstract class BasePoseViewerComponent extends BaseComponent implements O
   }
 
   async createEncodedVideo() {
+    console.log('Creating encoded video');
     const blob = await this.videoEncoder.finalize();
     const url = URL.createObjectURL(blob);
     this.setVideo(url);
